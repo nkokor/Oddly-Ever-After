@@ -355,6 +355,8 @@
 "Assets/Scripts/ExitManager.cs"
 "Assets/Scripts/InstructionsManager.cs"
 "Assets/Scripts/SceneLoader.cs"
+"Assets/Scripts/SoundLibrary.cs"
+"Assets/Scripts/SoundManager.cs"
 -langversion:9.0
 /deterministic
 /optimize+
