@@ -374,6 +374,7 @@
 "Assets/Scripts/ExitManager.cs"
 "Assets/Scripts/InstructionsManager.cs"
 "Assets/Scripts/MainMenu.cs"
+"Assets/Scripts/MouseFollower.cs"
 "Assets/Scripts/MusicLibrary.cs"
 "Assets/Scripts/MusicManager.cs"
 "Assets/Scripts/ParallaxBackground.cs"
