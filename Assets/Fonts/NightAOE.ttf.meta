@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 399b4ee7b264691408cd5f8c1acd18ed
+guid: ce3a43b79fc9946489add56c678a33b1
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Eater
+  - Nightmare AOE
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
