@@ -170,51 +170,44 @@ public class GhostScript : MonoBehaviour
         return Physics.Raycast(ray, range);
     }
 
-    private void MOVE ()
+    private void MOVE()
     {
-
-        if(Anim.GetCurrentAnimatorStateInfo(0).fullPathHash == MoveState)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-            {
-                MOVE_Velocity(new Vector3(0, 0, -Speed), new Vector3(0, 180, 0));
-            }
-            else if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-            {
-                MOVE_Velocity(new Vector3(0, 0, Speed), new Vector3(0, 0, 0));
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.RightArrow))
-            {
-                MOVE_Velocity(new Vector3(Speed, 0, 0), new Vector3(0, 90, 0));
-            }
-            else if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow))
-            {
-                MOVE_Velocity(new Vector3(-Speed, 0, 0), new Vector3(0, 270, 0));
-            }
+            MOVE_Velocity(transform.forward, transform.rotation.eulerAngles);
         }
-        KEY_DOWN();
-        KEY_UP();
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            RotatePlayer(-90);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RotatePlayer(90);
+        }
     }
 
-    private void MOVE_Velocity (Vector3 velocity, Vector3 rot)
+
+    private void RotatePlayer(float angle)
     {
-        MoveDirection = new Vector3 (velocity.x, MoveDirection.y, velocity.z);
-        if(Ctrl.enabled)
+        transform.Rotate(0, angle, 0);
+    }
+
+    private void MOVE_Velocity(Vector3 velocity, Vector3 rot)
+    {
+        MoveDirection = transform.forward * Speed;  
+        if (Ctrl.enabled)
         {
             Ctrl.Move(MoveDirection * Time.deltaTime);
         }
         MoveDirection.x = 0;
         MoveDirection.z = 0;
-        this.transform.rotation = Quaternion.Euler(rot);
     }
+
 
     private void KEY_DOWN ()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Anim.CrossFade(MoveState, 0.1f, 0, 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Anim.CrossFade(MoveState, 0.1f, 0, 0);
         }
