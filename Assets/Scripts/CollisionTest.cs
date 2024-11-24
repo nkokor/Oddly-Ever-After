@@ -8,7 +8,7 @@ public class CollisionTest : MonoBehaviour
     {
         if (other.gameObject.tag == "key_1")
         {
-            LevelManager.Instance.LoadScene("MiddleMap", "CrossFade");
+            LevelManager.Instance.LoadScene("MidwayMap", "CrossFade");
             MusicManager.Instance.PlayMusic("Map");
 
         } else if (other.gameObject.tag == "key_2")

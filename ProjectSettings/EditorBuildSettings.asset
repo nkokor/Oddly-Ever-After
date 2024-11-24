@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/FailureScene.unity
     guid: 4df4d4667585a0649afbb40ff4a94c0b
   - enabled: 1
-    path: Assets/Scenes/MiddleMap.unity
+    path: Assets/Scenes/MidwayMap.unity
     guid: 3cdcb6008a0a76e41bfdace3e728da37
   - enabled: 1
     path: Assets/Scenes/FinalMap.unity
