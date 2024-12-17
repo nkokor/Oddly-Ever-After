@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb2e989c7850374db06364c2fc11275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Level3
+  SceneName: Dawn's Awakening
   Soundtrack: Graveyard
 --- !u!4 &862194693
 Transform:

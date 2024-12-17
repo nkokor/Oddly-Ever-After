@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb2e989c7850374db06364c2fc11275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Level1
+  SceneName: Dusk's Devotion
   Soundtrack: Graveyard
 --- !u!1 &595164524
 GameObject:
