@@ -6,8 +6,10 @@ public class CollisionTest : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Collided with: {other.gameObject.name} (Tag: {other.gameObject.tag})");
         if (other.gameObject.tag == "key_1")
         {
+            Debug.Log("Key 1 collected! Loading scene...");
             LevelManager.Instance.LoadScene("MidwayMap", "CrossFade");
             MusicManager.Instance.PlayMusic("Map");
 
@@ -22,3 +24,4 @@ public class CollisionTest : MonoBehaviour
         }
     }
 }
+

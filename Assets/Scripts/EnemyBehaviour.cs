@@ -15,14 +15,15 @@ public class EnemyBehaviour : MonoBehaviour
     private int currentWaypointIndex = 0; 
 
     public float waypointTolerance = 1f; 
-
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public float timeBetweenAttacks = 2f;
+    public float chaseRange = 4f; 
+    public float attackRange = 2f; 
 
     private Animator animator;
+    private bool alreadyAttacked;
 
-    public SphereCollider chaseCollider;
-    public SphereCollider attackCollider;
+    private enum State { Patrolling, Chasing, Attacking }
+    private State currentState;
 
     private void Awake()
     {
@@ -40,29 +41,57 @@ public class EnemyBehaviour : MonoBehaviour
                 waypoints[i] = path.GetChild(i);
             }
         }
+
+        currentState = State.Patrolling; 
     }
 
     private void Update()
     {
-        if (waypoints != null && waypoints.Length > 0)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= attackRange)
         {
-            Patroling();
+            currentState = State.Attacking;
+        }
+        else if (distanceToPlayer <= chaseRange)
+        {
+            currentState = State.Chasing;
+        }
+        else
+        {
+            currentState = State.Patrolling;
+        }
+
+        HandleState();
+    }
+
+    private void HandleState()
+    {
+        switch (currentState)
+        {
+            case State.Patrolling:
+                Patroling();
+                break;
+            case State.Chasing:
+                ChasePlayer();
+                break;
+            case State.Attacking:
+                AttackPlayer();
+                break;
         }
     }
 
     private void Patroling()
     {
+        if (waypoints == null || waypoints.Length == 0) return;
+
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         agent.SetDestination(targetWaypoint.position);
 
         Vector3 distanceToWaypoint = transform.position - targetWaypoint.position;
         if (distanceToWaypoint.magnitude < waypointTolerance)
         {
-            currentWaypointIndex++;
-            if (currentWaypointIndex >= waypoints.Length)
-            {
-                currentWaypointIndex = 0;
-            }
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
     }
 
@@ -74,17 +103,18 @@ public class EnemyBehaviour : MonoBehaviour
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-
-        transform.LookAt(player); 
+        animator.SetTrigger("IsAttacking");
 
         if (!alreadyAttacked)
         {
-            animator.SetTrigger("IsAttacking");
-
-            Debug.Log("Player attacked!");
-
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.TriggerFall(); 
+            }
         }
     }
 
@@ -93,35 +123,11 @@ public class EnemyBehaviour : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (other == chaseCollider)
-            {
-                ChasePlayer();
-            }
-            else if (other == attackCollider)
-            {
-                AttackPlayer();
-            }
-        }
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackCollider.radius); 
+        Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseCollider.radius); 
-
-        if (path != null)
-        {
-            Gizmos.color = Color.blue;
-            for (int i = 0; i < path.childCount; i++)
-            {
-                Gizmos.DrawSphere(path.GetChild(i).position, 0.5f);
-            }
-        }
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 }
