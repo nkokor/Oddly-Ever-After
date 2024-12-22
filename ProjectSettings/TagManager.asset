@@ -7,6 +7,8 @@ TagManager:
   - key_3
   - key_1
   - Directional Light
+  - extra_life
+  - health_elix
   layers:
   - Default
   - TransparentFX

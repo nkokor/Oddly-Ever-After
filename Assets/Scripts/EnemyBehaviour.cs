@@ -10,14 +10,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public Transform path; 
-    private Transform[] waypoints; 
-    private int currentWaypointIndex = 0; 
+    public Transform path;
+    private Transform[] waypoints;
+    private int currentWaypointIndex = 0;
 
-    public float waypointTolerance = 1f; 
-    public float timeBetweenAttacks = 2f;
-    public float chaseRange = 4f; 
-    public float attackRange = 2f; 
+    public float waypointTolerance = 1f;
+    public float timeBetweenAttacks = 4f;
+    public float chaseRange = 4f;
+    public float attackRange = 2f;
 
     private Animator animator;
     private bool alreadyAttacked;
@@ -28,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -42,24 +42,33 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
-        currentState = State.Patrolling; 
+        currentState = State.Patrolling;
     }
 
     private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        PlayerController playerController = player.GetComponent<PlayerController>();
 
-        if (distanceToPlayer <= attackRange)
+        if (playerController != null && playerController.isInvulnerable)
         {
-            currentState = State.Attacking;
-        }
-        else if (distanceToPlayer <= chaseRange)
-        {
-            currentState = State.Chasing;
+            currentState = State.Patrolling; 
         }
         else
         {
-            currentState = State.Patrolling;
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer <= attackRange)
+            {
+                currentState = State.Attacking;
+            }
+            else if (distanceToPlayer <= chaseRange)
+            {
+                currentState = State.Chasing;
+            }
+            else
+            {
+                currentState = State.Patrolling;
+            }
         }
 
         HandleState();
@@ -97,23 +106,32 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        if (playerController != null && !playerController.isInvulnerable) 
+        {
+            agent.SetDestination(player.position);
+        }
+        else
+        {
+            currentState = State.Patrolling; 
+        }
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
-        animator.SetTrigger("IsAttacking");
-
-        if (!alreadyAttacked)
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        if (playerController != null && !playerController.isInvulnerable) 
         {
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            agent.SetDestination(transform.position);
+            animator.SetTrigger("IsAttacking");
+            SoundManager.Instance.PlaySound3D("Ghost Scare", transform.position);
 
-            PlayerController playerController = player.GetComponent<PlayerController>();
-            if (playerController != null)
+            if (!alreadyAttacked)
             {
-                playerController.TriggerFall(); 
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+                playerController.TriggerFall();
             }
         }
     }
