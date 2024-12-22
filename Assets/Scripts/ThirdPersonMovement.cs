@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.AI;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    public NavMeshAgent agent;
     public Transform cam;
 
     public float baseSpeed = 1f;
@@ -23,6 +23,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         currentSpeed = 0f;
+        agent.speed = baseSpeed;
     }
 
     void Update()
@@ -37,17 +38,19 @@ public class ThirdPersonMovement : MonoBehaviour
         if (isMoving)
         {
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+            agent.speed = currentSpeed;
 
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDirection.normalized * currentSpeed * Time.deltaTime);
+            agent.SetDestination(transform.position + moveDirection);
         }
         else
         {
             currentSpeed = 0f;
+            agent.speed = 0f;
         }
 
         animator.SetBool("IsMoving", isMoving);
@@ -56,14 +59,13 @@ public class ThirdPersonMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             isJumping = true;
-            animator.SetBool("IsJumping", true);   
+            animator.SetBool("IsJumping", true);
         }
     }
 
     public void OnFallToIdleTransition()
     {
         isJumping = false;
-        animator.SetBool("IsJumping", false);  
+        animator.SetBool("IsJumping", false);
     }
-
 }
