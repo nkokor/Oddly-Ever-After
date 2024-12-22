@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         currentSpeed = 0f;
         agent.speed = baseSpeed;
         currentHealthStatus = 1f;
-        initialPosition = transform.position;
+        initialPosition = new Vector3(0.03931332f, 0.328f, 1.65f);
 
         healthSlider.maxValue = 3;
         healthSlider.value = 3;
@@ -114,24 +114,33 @@ public class PlayerController : MonoBehaviour
     private void TakeDamage()
     {
         damageTakenThisLife++; 
-        currentHealthStatus -= 1f / 3f; 
+        if (damageTakenThisLife >= 3) {
+            currentHealthStatus = 1f; 
+            healthSlider.value = currentHealthStatus * 3; 
+        } else {
+            currentHealthStatus -= 1f / 3f; 
+            healthSlider.value = currentHealthStatus * 3; 
+        }
 
         if (currentHealthStatus <= 0f)
         {
-            currentHealthStatus = 0f; 
+            currentHealthStatus = 1f; 
+            healthSlider.value = currentHealthStatus * 3; 
         }
 
         healthSlider.value = currentHealthStatus * 3; 
 
         if (damageTakenThisLife >= 3)
         {
-            numberOfLives--;
             currentHealthStatus = 1f; 
+            healthSlider.value = currentHealthStatus * 3; 
+            numberOfLives--;
             damageTakenThisLife = 0; 
 
             if (numberOfLives <= 0)
             {
                 currentHealthStatus = 0;
+                healthSlider.value = currentHealthStatus * 3; 
                 StartCoroutine(HandleGameOver());
             }
             else
@@ -149,10 +158,16 @@ public class PlayerController : MonoBehaviour
     private IEnumerator BlackoutAndResetPosition()
     {
         blackoutImage.gameObject.SetActive(true); 
-        blackoutImage.color = new Color(0, 0, 0, 0); 
+
+        blackoutImage.color = new Color(0, 0, 0, 255); 
 
         float duration = 1f;
         float elapsed = 0f;
+        currentHealthStatus = 1f; 
+        healthSlider.value = currentHealthStatus * 3; 
+        
+        transform.position = initialPosition;  
+        
         while (elapsed < duration)
         {
             blackoutImage.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, elapsed / duration));
@@ -160,7 +175,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         elapsed = 0f;
         while (elapsed < duration)
@@ -171,10 +186,6 @@ public class PlayerController : MonoBehaviour
         }
 
         blackoutImage.gameObject.SetActive(false); 
-
-        transform.position = initialPosition; 
-        currentHealthStatus = 1f; 
-        healthSlider.value = currentHealthStatus * 3;  
 
         StartCoroutine(ResetInvulnerabilityAndWait());
     }
@@ -217,6 +228,7 @@ public class PlayerController : MonoBehaviour
             if (currentHealthStatus < 1f)
             {
                 currentHealthStatus += 0.33f;
+                healthSlider.value = currentHealthStatus * 3; 
                 if (currentHealthStatus > 1f) currentHealthStatus = 1f;
             }
             Destroy(other.gameObject);

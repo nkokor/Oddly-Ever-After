@@ -51,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (playerController != null && playerController.isInvulnerable)
         {
-            currentState = State.Patrolling; 
+            currentState = State.Patrolling; // Neprijatelj se vraća na patroliranje dok je igrač neranjiv
         }
         else
         {

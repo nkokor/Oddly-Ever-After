@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.8436594, b: 1, a: 1}
+  m_Color: {r: 0.435849, g: 0.89174116, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2564,7 +2564,7 @@ MonoBehaviour:
   path: {fileID: 2089929414}
   waypointTolerance: 1
   timeBetweenAttacks: 0
-  chaseRange: 4
+  chaseRange: 3
   attackRange: 2
 --- !u!195 &141458196
 NavMeshAgent:
@@ -13504,7 +13504,7 @@ MonoBehaviour:
   path: {fileID: 1367935239}
   waypointTolerance: 1
   timeBetweenAttacks: 0
-  chaseRange: 4
+  chaseRange: 3
   attackRange: 2
 --- !u!195 &879118941
 NavMeshAgent:
@@ -19523,7 +19523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1279899342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22426,7 +22426,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 3
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 2.19
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -24048,7 +24048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.84705883, b: 1, a: 0.28235295}
+  m_Color: {r: 0.23018861, g: 0.23018861, b: 0.23018861, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24639,7 +24639,7 @@ MonoBehaviour:
   path: {fileID: 1803208845}
   waypointTolerance: 1
   timeBetweenAttacks: 0
-  chaseRange: 4
+  chaseRange: 3
   attackRange: 2
 --- !u!195 &1622711425
 NavMeshAgent:
