@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("UnlockedLevel", 1); 
+        PlayerPrefs.SetInt("CompletedLevel", 0);  
+        PlayerPrefs.Save(); 
+
         MusicManager.Instance.PlayMusic("MainMenu");
     }
 
-    // Update is called once per frame
     void Update()
     {
         

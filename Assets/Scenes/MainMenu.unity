@@ -3380,7 +3380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb2e989c7850374db06364c2fc11275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: StartMap
+  SceneName: Map
   Soundtrack: Map
 --- !u!1 &1917123957
 GameObject:
