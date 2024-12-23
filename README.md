@@ -13,6 +13,11 @@ Oliver must find his way out before the sun rises, or he will never see Daisy ag
 # 🎮 Game
 The game has 3 levels and the goal in each level is to find the key to unlock gate. The player, in the role of Oliver's ghost, faces ghosts of the graveyard, as well as the master of the graveyard, Skullcrusher Sam, who try to stop him from escaping. 
 
+# 🪧 Menu Screen
+<p align="center">
+  <img width='650px' height='350px' src='Screenshot 2024-12-23 180039.png' alt='icon' style='margin: auto;'>
+</p>
+
 # 🗺️ Map
 <p align="center">
   <img width='650px' height='350px' src='Screenshot 2024-11-24 221801.png' alt='icon' style='margin: auto;'>
