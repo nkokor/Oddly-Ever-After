@@ -194,7 +194,8 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("IsFalling"); 
         yield return new WaitForSeconds(2f);  
-        SceneManager.LoadScene("FailureScene");
+        LevelManager.Instance.LoadScene("FailureScene", "CrossFade");
+        MusicManager.Instance.PlayMusic("Failure");
     }
 
     private IEnumerator ResetInvulnerabilityAndWait()

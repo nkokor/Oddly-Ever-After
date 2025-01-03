@@ -27,12 +27,12 @@ public class CollisionTest : MonoBehaviour
         } 
         else if (other.gameObject.tag == "key_3")
         {
-            PlayerPrefs.SetInt("UnlockedLevel", 4); 
-            PlayerPrefs.SetInt("CompletedLevel", 3);  
+            PlayerPrefs.SetInt("UnlockedLevel", 1); 
+            PlayerPrefs.SetInt("CompletedLevel", 0);  
             PlayerPrefs.Save(); 
 
             LevelManager.Instance.LoadScene("HappyEnding", "CrossFade");
-            MusicManager.Instance.PlayMusic("MainMenu");
+            MusicManager.Instance.PlayMusic("Victory");
         }
     }
 }

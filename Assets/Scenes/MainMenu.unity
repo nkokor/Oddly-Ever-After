@@ -272,7 +272,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -288,7 +288,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -1177,50 +1177,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 951995870}
-  - component: {fileID: 951995869}
-  - component: {fileID: 951995868}
   - component: {fileID: 951995871}
+  - component: {fileID: 951995875}
+  - component: {fileID: 951995874}
+  - component: {fileID: 951995873}
   - component: {fileID: 951995872}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: CentralAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &951995868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951995867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b1a66482d311b49a6a3682b5707b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxLibrary: {fileID: 951995869}
-  sfx2DSource: {fileID: 840350074}
---- !u!114 &951995869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951995867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7697dd28c2394ae4fae76a6b65f14e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundEffects:
-  - groupID: Click
-    clips:
-    - {fileID: 8300000, guid: ea6893ce9721df5448f579e72702aea7, type: 3}
-  - groupID: Hover
-    clips:
-    - {fileID: 8300000, guid: 1528a1037695c1243a797b9dc518e103, type: 3}
 --- !u!4 &951995870
 Transform:
   m_ObjectHideFlags: 0
@@ -1247,17 +1215,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 951995867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776ec128e04324c4c9710fe4f161515e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ea1fef95a4dd7647bbd72091103c6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracks:
-  - trackName: MainMenu
-    clip: {fileID: 8300000, guid: 4f03d084472eff548aa72bd09237b7ba, type: 3}
-  - trackName: Graveyard
-    clip: {fileID: 8300000, guid: 3ce2e99cdc4f4d743b09a2db4da934b0, type: 3}
-  - trackName: Map
-    clip: {fileID: 8300000, guid: ab51fed88ad14f846832693c51ba9ded, type: 3}
 --- !u!114 &951995872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951995867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b1a66482d311b49a6a3682b5707b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxLibrary: {fileID: 951995873}
+  sfx2DSource: {fileID: 840350074}
+--- !u!114 &951995873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951995867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7697dd28c2394ae4fae76a6b65f14e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - groupID: Click
+    clips:
+    - {fileID: 8300000, guid: ea6893ce9721df5448f579e72702aea7, type: 3}
+  - groupID: Hover
+    clips:
+    - {fileID: 8300000, guid: 1528a1037695c1243a797b9dc518e103, type: 3}
+  - groupID: Health Elixir
+    clips:
+    - {fileID: 8300000, guid: ae7c15525503c0c48a45d44b14e1c766, type: 3}
+  - groupID: Fal
+    clips:
+    - {fileID: 8300000, guid: 617b3917bdc8392438b8f000ddba71d1, type: 3}
+  - groupID: Ghost Scare
+    clips:
+    - {fileID: 8300000, guid: cdb107dbaafebaf4f817673249375285, type: 3}
+  - groupID: Scream
+    clips:
+    - {fileID: 8300000, guid: 084758436ec24194ca65b9fa5de7588c, type: 3}
+  - groupID: Extra Life
+    clips:
+    - {fileID: 8300000, guid: 8b90edb1ebe99ee44a076850d4086b8f, type: 3}
+--- !u!114 &951995874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1269,8 +1278,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc33a34ca80692548890676a194efa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicLibrary: {fileID: 951995871}
+  musicLibrary: {fileID: 951995875}
   musicSource: {fileID: 820098708}
+--- !u!114 &951995875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951995867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776ec128e04324c4c9710fe4f161515e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracks:
+  - trackName: MainMenu
+    clip: {fileID: 8300000, guid: 4f03d084472eff548aa72bd09237b7ba, type: 3}
+  - trackName: Map
+    clip: {fileID: 8300000, guid: ab51fed88ad14f846832693c51ba9ded, type: 3}
+  - trackName: Graveyard
+    clip: {fileID: 8300000, guid: 3ce2e99cdc4f4d743b09a2db4da934b0, type: 3}
 --- !u!1 &967524451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,11 +1867,11 @@ PrefabInstance:
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlaySound2D
@@ -2741,7 +2769,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -2757,7 +2785,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -2932,9 +2960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d745d165bf1144793d9a6e496cfbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2
-  maxOffsetX: 10
-  maxOffsetY: 10
 --- !u!1 &1876198746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,7 +3017,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -3008,7 +3033,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 951995868}
+        - m_Target: {fileID: 951995872}
           m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
           m_MethodName: PlaySound2D
           m_Mode: 5
@@ -3221,11 +3246,11 @@ PrefabInstance:
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlaySound2D
@@ -3589,11 +3614,19 @@ PrefabInstance:
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
     - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 951995868}
+      objectReference: {fileID: 951995872}
+    - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySound2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298927334035239432, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySound2D
+      objectReference: {fileID: 0}
     - target: {fileID: 6321428337852952360, guid: 20331a8a518a7cc46925e0aebd3d4692, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
       value: 0.8745098
