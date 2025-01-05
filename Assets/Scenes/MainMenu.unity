@@ -1266,6 +1266,9 @@ MonoBehaviour:
   - groupID: Extra Life
     clips:
     - {fileID: 8300000, guid: 8b90edb1ebe99ee44a076850d4086b8f, type: 3}
+  - groupID: Typing
+    clips:
+    - {fileID: 8300000, guid: 8b135a0a2b57d364d81e9d403e6c2e05, type: 3}
 --- !u!114 &951995874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3421,7 +3424,7 @@ GameObject:
   - component: {fileID: 1917123959}
   - component: {fileID: 1917123958}
   m_Layer: 5
-  m_Name: LevelManager
+  m_Name: SceneTransitioner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
