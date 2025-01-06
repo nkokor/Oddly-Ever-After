@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     public Image blackoutImage;
 
+    public GameObject failureCanvas;
+
     void Start()
     {
         currentSpeed = 0f;
@@ -194,6 +196,12 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("IsFalling"); 
         yield return new WaitForSeconds(2f);  
+
+        failureCanvas.SetActive(true);  
+        SoundManager.Instance.PlaySound2D("GameOver");
+
+        yield return new WaitForSeconds(2.5f);  
+
         LevelManager.Instance.LoadScene("FailureScene", "CrossFade");
         MusicManager.Instance.PlayMusic("Failure");
     }
@@ -229,10 +237,12 @@ public class PlayerController : MonoBehaviour
             if (currentHealthStatus < 1f)
             {
                 currentHealthStatus += 0.33f;
-                healthSlider.value = currentHealthStatus * 3; 
+                healthSlider.value = currentHealthStatus * 3;
                 if (currentHealthStatus > 1f) currentHealthStatus = 1f;
             }
             Destroy(other.gameObject);
         }
+
     }
+
 }   
