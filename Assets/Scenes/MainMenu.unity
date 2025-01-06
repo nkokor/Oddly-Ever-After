@@ -1269,6 +1269,9 @@ MonoBehaviour:
   - groupID: Typing
     clips:
     - {fileID: 8300000, guid: 8b135a0a2b57d364d81e9d403e6c2e05, type: 3}
+  - groupID: LevelUp
+    clips:
+    - {fileID: 8300000, guid: 79cd59a7219091543b278ada8ed7312e, type: 3}
 --- !u!114 &951995874
 MonoBehaviour:
   m_ObjectHideFlags: 0

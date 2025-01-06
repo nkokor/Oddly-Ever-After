@@ -5845,7 +5845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well... Thanks for nothing I guess...
+  m_text: "Well... \nThanks for NOTHING!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 551ed9db88e5aac46a887dc0189a9c20, type: 2}
   m_sharedMaterial: {fileID: -928610947810911057, guid: 551ed9db88e5aac46a887dc0189a9c20, type: 2}
