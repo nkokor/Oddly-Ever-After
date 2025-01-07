@@ -22,7 +22,3 @@ The game has 3 levels and the goal in each level is to find the key to unlock ga
 <p align="center">
   <img width='650px' height='350px' src='Screenshot 2024-11-24 221801.png' alt='icon' style='margin: auto;'>
 </p>
-
-
-# 🫱🏼‍🫲🏼 Credits
-Asset pack used for the main menu was created by nemo on itch.io. It can be found here: https://nonemo.itch.io/dark-halloween
