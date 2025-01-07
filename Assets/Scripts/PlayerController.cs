@@ -80,8 +80,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Reset speed and stop agent instantly
             currentSpeed = 0f;
             agent.speed = 0f;
+            agent.ResetPath(); // Stops NavMeshAgent from continuing movement
         }
 
         animator.SetBool("IsMoving", isMoving);
@@ -305,4 +307,4 @@ public class PlayerController : MonoBehaviour
         LevelManager.Instance.LoadScene(sceneName, "CrossFade");
         MusicManager.Instance.PlayMusic(music);
     }
-}
+} 

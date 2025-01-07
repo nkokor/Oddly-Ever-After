@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SkullCrusherSamBehaviour : MonoBehaviour
+public class SkullcrusherSamBehaviour : MonoBehaviour
 {
     public NavMeshAgent agent;
 

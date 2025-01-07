@@ -1311,6 +1311,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ab51fed88ad14f846832693c51ba9ded, type: 3}
   - trackName: Graveyard
     clip: {fileID: 8300000, guid: 3ce2e99cdc4f4d743b09a2db4da934b0, type: 3}
+  - trackName: Failure
+    clip: {fileID: 8300000, guid: a0f4f2b14e19ccf4abe523a26be7c8fe, type: 3}
 --- !u!1 &967524451
 GameObject:
   m_ObjectHideFlags: 0
