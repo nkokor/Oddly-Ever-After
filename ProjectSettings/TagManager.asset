@@ -10,6 +10,7 @@ TagManager:
   - extra_life
   - health_elix
   - key_2
+  - skullcrusher
   layers:
   - Default
   - TransparentFX
