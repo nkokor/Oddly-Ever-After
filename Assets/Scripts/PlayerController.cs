@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 using UnityEngine.UI;
+
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -48,6 +49,16 @@ public class PlayerController : MonoBehaviour
         healthSlider.value = 3;
 
         blackoutImage.gameObject.SetActive(false);
+
+        // Disable automatic height adjustment of NavMeshAgent
+        agent.updateUpAxis = false;
+
+        // Optional: Isključite gravitaciju ako koristite Rigidbody
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.useGravity = false;
+        }
     }
 
     void Update()
@@ -75,6 +86,7 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
+            // Apply movement in the horizontal plane (X, Z)
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             agent.SetDestination(transform.position + moveDirection);
         }
@@ -289,7 +301,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("key_3"))
         {
-            StartCoroutine(HandleKey("LevelUp", "HappyEnding", "Victory", 1, 0));
+            StartCoroutine(HandleKey("Win", "HappyEnding", "Victory", 1, 0));
         }
     }
 
@@ -307,4 +319,4 @@ public class PlayerController : MonoBehaviour
         LevelManager.Instance.LoadScene(sceneName, "CrossFade");
         MusicManager.Instance.PlayMusic(music);
     }
-} 
+}

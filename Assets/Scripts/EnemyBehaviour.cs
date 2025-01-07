@@ -15,15 +15,17 @@ public class EnemyBehaviour : MonoBehaviour
     private int currentWaypointIndex = 0;
 
     public float waypointTolerance = 1f;
-    public float timeBetweenAttacks = 4f;
-    public float chaseRange = 4f;
-    public float attackRange = 2f;
+    private float timeBetweenAttacks = 4f;
+    private float chaseRange = 3f;
+    private float attackRange = 1.3f;
 
     private Animator animator;
     private bool alreadyAttacked;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State currentState;
+
+    private Quaternion initialRotation;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         currentState = State.Patrolling;
+        initialRotation = transform.rotation;
     }
 
     private void Update()
@@ -51,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (playerController != null && playerController.isInvulnerable)
         {
-            currentState = State.Patrolling; // Neprijatelj se vraća na patroliranje dok je igrač neranjiv
+            currentState = State.Patrolling;
         }
         else
         {
@@ -107,22 +110,23 @@ public class EnemyBehaviour : MonoBehaviour
     private void ChasePlayer()
     {
         PlayerController playerController = player.GetComponent<PlayerController>();
-        if (playerController != null && !playerController.isInvulnerable) 
+        if (playerController != null && !playerController.isInvulnerable)
         {
             agent.SetDestination(player.position);
         }
         else
         {
-            currentState = State.Patrolling; 
+            currentState = State.Patrolling;
         }
     }
 
     private void AttackPlayer()
     {
         PlayerController playerController = player.GetComponent<PlayerController>();
-        if (playerController != null && !playerController.isInvulnerable) 
+        if (playerController != null && !playerController.isInvulnerable)
         {
-            agent.SetDestination(transform.position);
+            RotateTowardsPlayer();
+            agent.SetDestination(transform.position); 
             animator.SetTrigger("IsAttacking");
             SoundManager.Instance.PlaySound3D("Ghost Scare", transform.position);
 
@@ -130,10 +134,31 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
                 playerController.TriggerFall();
+                Invoke(nameof(RotateBackToInitial), 0.5f);
+
+                StartCoroutine(StopMovementForAttack());
             }
         }
+    }
+
+    private IEnumerator StopMovementForAttack()
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(2.5f); 
+        agent.isStopped = false;
+    }
+
+    private void RotateTowardsPlayer()
+    {
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0f, directionToPlayer.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    private void RotateBackToInitial()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
     }
 
     private void ResetAttack()
